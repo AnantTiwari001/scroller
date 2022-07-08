@@ -8,42 +8,64 @@ let c = canvas.getContext("2d");
 
 let character = new Image();
 character.src = "Download16151.png";
-let x = 410;
+let xGap=64;
+let x = 10;
 let y = 40;
 let iCropX = 9;
 let iCropY = 13;
 let rWalk = 717;
+let lWalk =589;
 
 character.addEventListener("load", function () {
-  // c.drawImage(character,10,10, 30,30, 150, 150)
-  // drawImage(image, sx, sy, sWidth, sHeight, x, y, Width, Height)
   c.drawImage(character, iCropX, iCropY, 45, 50, x, y, 50, 100);
   c.strokeStyle = "red";
   c.strokeRect(x, y, 50, 100);
 });
 iCropY = rWalk;
 
-// let btn= document.getElementById('btn');
 document.addEventListener("keydown", frame);
+function increaseFrame(){
+  iCropX+=xGap;
+  if (iCropX>395){
+    iCropX=9;
+  }
+}
 
 function frame(e) {
   c.clearRect(0, 0, innerWidth, innerHeight);
   c.strokeStyle = "red";
-  //   console.log(e)
-  // console.log('The btn is clicked here and this means that the thing is working here okay bye!')
-  if (e.key !== "y") {
-    console.log(e.key);
-    iCropX += 64;
-    // x += 8;
+  // console.log(e.key);
+
+    if(e.key==='ArrowRight'){
+      if(iCropY!=rWalk){
+        iCropY=rWalk;
+        iCropX=9;
+      }
+    increaseFrame()
     for (let i = 0; i < 4; i++) {
         x+=1;
     }
-    if (iCropX > 395) {
-      iCropX = 9;
+  }else if(e.key==='ArrowLeft'){
+    if(iCropY!=lWalk){
+      iCropY=lWalk;
+      iCropX=9;
     }
-  } else {
-    iCropY += 1;
+    increaseFrame()
+    for (let i = 0; i < 4; i++) {
+      x-=1;
   }
+  }
+
+
   c.strokeRect(x, y, 50, 100);
   c.drawImage(character, iCropX, iCropY, 45, 50, x, y, 50, 100);
+}
+
+// Controls for mobile devices 
+function control(direction){
+  if (direction=='right') {
+    document.dispatchEvent(new KeyboardEvent('keydown',{'key':'ArrowRight'}));
+  }else if(direction=='left'){
+    document.dispatchEvent(new KeyboardEvent('keydown',{'key':'ArrowLeft'}));
+  }
 }

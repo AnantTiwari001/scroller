@@ -1,26 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        #btn{
+
+        #btn {
             position: absolute;
             top: 30px;
             right: 20px;
         }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .btns {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+
+        .right,
+        .left,
+        .up,
+        .down {
+            position: relative;
+        }
+
+        .right {
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .left {
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .up {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .down {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hover {
+            transition: all 200ms ease-in-out;
+            cursor: pointer;
+        }
+
+        .hover:hover {
+            background-color: rgb(206, 199, 199);
+        }
+
+        .control {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            display: none;
+        }
+        @media(max-width:300px){
+            .control{
+                display: initial;
+            }
+        }
     </style>
     <title>Scroller Introduction</title>
 </head>
+
 <body>
     <canvas id="canvas"></canvas>
-    <!-- <button id="btn">Click</button> -->
+    <!-- <button id="btn"></button> -->
+    <div class="control">
+        <div class="btns">
+            <span class="material-symbols-outlined right hover" onclick="control('right')">arrow_forward</span>
+            <span class="material-symbols-outlined left hover" onclick="control('left')">arrow_back</span>
+            <span class="material-symbols-outlined up hover">arrow_upward</span>
+            <span class="material-symbols-outlined down hover">arrow_downward</span>
+        </div>
+    </div>
     <script src="index.js"></script>
 </body>
+
 </html>
